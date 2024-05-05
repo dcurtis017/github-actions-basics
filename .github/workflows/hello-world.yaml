@@ -2,6 +2,7 @@ name: Hello World
 
 # trigger
 on:
+  # leaving this empty means we'll manually dispatch the action
   workflow_dispatch: 
 
 # workflow has one or many jobs
