@@ -1,0 +1,16 @@
+name: Hello World
+
+# trigger
+on:
+  workflow_dispatch: 
+
+# workflow has one or many jobs
+# these are what we do whenthe workflow runs
+jobs:
+  print-hello-world: # job name
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Say hello
+        run: ech "hello world!"
+    
