@@ -1,0 +1,35 @@
+name: Cron Example
+
+# trigger
+on:
+  workflow_dispatch: 
+
+jobs:
+  run-integration-tests: # job name
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        # use cron-example as the default working directory
+        working-directory: cron-example
+
+    steps:
+      - uses: actions/checkout@v2 
+
+      # setup node
+      - name: Setup Node.js 12
+        uses: actions/setup-node@v1
+        with:
+          node-version: "12.x"
+
+      # install yarn
+      - name: Install yarn
+        run: npm install --global yarn
+
+      # install dependencies/ libraries
+      - name: Install Dependencies
+        run: yarn install --frozen-lockfile
+
+      # run cucumber tests
+      - name: Run Tests
+        run: yarn test
