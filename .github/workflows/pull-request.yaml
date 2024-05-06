@@ -29,14 +29,22 @@ jobs:
           cache: 'npm'
           cache-dependency-path: typescript-project/yarn.lock
 
-      # install yarn
-      - name: Install yarn
+      # Install Yarn
+      - name: Install Yarn
         run: npm install --global yarn
 
-      # install dependencies/ libraries
-      - name: Install Dependencies
+      # Install libraries
+      - name: Install dependencies
         run: yarn install --frozen-lockfile
 
-      # run cucumber tests
-      - name: Run Tests
+      # Run linting
+      - name: Run linting
+        run: yarn lint
+
+      # Compile the code
+      - name: Build project
+        run: yarn build
+
+      # Run tests
+      - name: Run tests
         run: yarn test
