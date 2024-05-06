@@ -2,12 +2,15 @@ name: Pull Request Example
 
 # trigger
 on:
-  #schedule:
-    #- cron: "* * * * *" # not a guartee but gh will try to schedule for this
+  pull_request:
+    branches:
+      - main
+    paths:
+      - typescript-project/** #only run when a change in this folder or file
   workflow_dispatch: 
 
 jobs:
-  run-integration-tests: # job name
+  pull-request: # job name
     runs-on: ubuntu-latest
 
     defaults:
