@@ -13,7 +13,7 @@ jobs:
     defaults:
       run:
         # use cron-example as the default working directory
-        working-directory: cron-example
+        working-directory: typescript-project
 
     steps:
       - uses: actions/checkout@v2 
