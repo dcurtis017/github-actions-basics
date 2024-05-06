@@ -13,18 +13,16 @@ jobs:
     defaults:
       run:
         # use cron-example as the default working directory
-        working-directory: typescript-project
+        working-directory: cron-example
 
     steps:
       - uses: actions/checkout@v2 
 
       # setup node
-      - name: Setup Node.js 16
+      - name: Setup Node.js 12
         uses: actions/setup-node@v1
         with:
-          node-version: "16.x"
-          cache: 'npm'
-          cache-dependency-path: typescript-project/yarn.lock
+          node-version: "12.x"
 
       # install yarn
       - name: Install yarn
