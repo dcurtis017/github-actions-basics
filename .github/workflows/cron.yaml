@@ -19,10 +19,12 @@ jobs:
       - uses: actions/checkout@v2 
 
       # setup node
-      - name: Setup Node.js 12
+      - name: Setup Node.js 16
         uses: actions/setup-node@v1
         with:
-          node-version: "12.x"
+          node-version: "16.x"
+          cache: 'npm'
+          cache-dependency-path: typescript-project/yarn.lock
 
       # install yarn
       - name: Install yarn
