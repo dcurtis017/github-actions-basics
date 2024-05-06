@@ -1,28 +1,27 @@
-name: Cron Example
+name: Pull Request Example
 
 # trigger
 on:
-  #schedule:
-    #- cron: "* * * * *" # not a guartee but gh will try to schedule for this
   workflow_dispatch: 
 
 jobs:
-  run-integration-tests: # job name
+  pull-request: # job name
     runs-on: ubuntu-latest
 
     defaults:
       run:
         # use cron-example as the default working directory
-        working-directory: cron-example
+        working-directory: typescript-project
 
     steps:
       - uses: actions/checkout@v2 
 
       # setup node
-      - name: Setup Node.js 12
-        uses: actions/setup-node@v1
+      - name: Setup Node.js 16
+        uses: actions/setup-node@v2
         with:
-          node-version: "12.x"
+          node-version: "16.x"
+          cache: 'npm' # between jobs this will cache our packages for us making installs faster
 
       # install yarn
       - name: Install yarn
@@ -32,6 +31,11 @@ jobs:
       - name: Install Dependencies
         run: yarn install --frozen-lockfile
 
+      - name: Lint
+        run: yarn lint
+
+      - name: Build project
+        run: yarn build
       # run cucumber tests
       - name: Run Tests
         run: yarn test
